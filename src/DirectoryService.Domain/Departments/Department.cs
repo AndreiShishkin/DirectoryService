@@ -9,7 +9,7 @@ public class Department
 {
     public Guid Id { get; }
 
-    public Name Name { get; }
+    public DepartmentName DepartmentName { get; }
 
     public string Identifier { get; }
 
@@ -27,14 +27,14 @@ public class Department
 
     private Department(
         Guid? id,
-        Name name,
+        DepartmentName departmentName,
         string identifier,
         Guid parentId,
         Path path,
         short depth)
     {
         Id = id ?? Guid.NewGuid();
-        Name = name;
+        DepartmentName = departmentName;
         Identifier = identifier;
         ParentId = parentId;
         Path = path;
@@ -51,16 +51,16 @@ public class Department
         string pathValue,
         short depth)
     {
-        var name = Name.Create(nameValue);
+        var name = DepartmentName.Create(nameValue);
 
-        if (name.Error != null)
+        if (name.IsFailure)
         {
             return name.Error;
         }
 
         var path = Path.Create(pathValue);
 
-        if (path.Error != null)
+        if (path.IsFailure)
         {
             return path.Error;
         }

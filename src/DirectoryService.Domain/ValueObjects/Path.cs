@@ -6,6 +6,7 @@ namespace DirectoryService.Domain.ValueObjects;
 
 public record Path
 {
+    private const string PATH_REGEX = @"^[a-z]*(\.[a-z]+)*$";
     public string Value { get; }
 
     private Path(string value)
@@ -15,8 +16,6 @@ public record Path
 
     public static Result<Path, Error> Create(string value)
     {
-        const string PATH_REGEX = @"^[a-z]*(\.[a-z]+)*$";
-
         Regex regex = new(PATH_REGEX);
         if (!regex.IsMatch(value))
         {

@@ -1,5 +1,4 @@
 ﻿using CSharpFunctionalExtensions;
-using DirectoryService.Domain.Positions.ValueObjects;
 using DirectoryService.Domain.Shared;
 using DirectoryService.Domain.ValueObjects;
 
@@ -26,21 +25,21 @@ public class Position
         Description = description;
         IsActive = true;
         CreatedAt = DateTime.UtcNow;
-        UpdatedAt = DateTime.UtcNow;
+        UpdatedAt = CreatedAt;
     }
 
     public static Result<Position, Error> Create(string nameValue, string descriptionValue)
     {
-        var name = PositionName.Create(nameValue);
+        var name = PositionName.Create(Array.Empty<string>(), nameValue);
 
-        if (name.Error != null)
+        if (name.IsFailure)
         {
             return name.Error;
         }
 
         var description = Description.Create(descriptionValue);
 
-        if (description.Error != null)
+        if (description.IsFailure)
         {
             return description.Error;
         }
