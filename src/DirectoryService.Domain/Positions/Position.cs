@@ -8,15 +8,15 @@ public class Position
 {
     public Guid Id { get; }
 
-    public PositionName Name { get; }
+    public PositionName Name { get; private set; }
 
-    public Description Description { get; }
+    public Description Description { get; private set; }
 
-    public bool IsActive { get; }
+    public bool IsActive { get; private set; }
 
     public DateTime CreatedAt { get; }
 
-    public DateTime UpdatedAt { get; }
+    public DateTime UpdatedAt { get; private set; }
 
     private Position(Guid? id, PositionName name, Description description)
     {
@@ -28,22 +28,8 @@ public class Position
         UpdatedAt = CreatedAt;
     }
 
-    public static Result<Position, Error> Create(string nameValue, string descriptionValue)
+    public static Result<Position, Error> Create(PositionName name, Description description)
     {
-        var name = PositionName.Create(Array.Empty<string>(), nameValue);
-
-        if (name.IsFailure)
-        {
-            return name.Error;
-        }
-
-        var description = Description.Create(descriptionValue);
-
-        if (description.IsFailure)
-        {
-            return description.Error;
-        }
-
-        return new Position(Guid.NewGuid(), name.Value, description.Value);
+        return new Position(Guid.NewGuid(), name, description);
     }
 }

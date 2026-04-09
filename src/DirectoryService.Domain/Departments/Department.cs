@@ -9,27 +9,27 @@ public class Department
 {
     public Guid Id { get; }
 
-    public DepartmentName DepartmentName { get; }
+    public DepartmentName DepartmentName { get; private set;  }
 
-    public string Identifier { get; }
+    public Identifier Identifier { get; private set; }
 
-    public Guid ParentId { get; }
+    public Guid? ParentId { get; private set; }
 
-    public Path Path { get; }
+    public Path Path { get; private set; }
 
-    public short Depth { get; }
+    public short Depth { get; private set; }
 
-    public bool IsActive { get; }
+    public bool IsActive { get; private set; }
 
     public DateTime CreatedAt { get; }
 
-    public DateTime UpdatedAt { get; }
+    public DateTime UpdatedAt { get; private set; }
 
     private Department(
         Guid? id,
         DepartmentName departmentName,
-        string identifier,
-        Guid parentId,
+        Identifier identifier,
+        Guid? parentId,
         Path path,
         short depth)
     {
@@ -45,26 +45,12 @@ public class Department
     }
 
     public static Result<Department, Error> Create(
-        string nameValue,
-        string identifier,
-        Guid parentId,
-        string pathValue,
+        DepartmentName name,
+        Identifier identifier,
+        Guid? parentId,
+        Path path,
         short depth)
     {
-        var name = DepartmentName.Create(nameValue);
-
-        if (name.IsFailure)
-        {
-            return name.Error;
-        }
-
-        var path = Path.Create(pathValue);
-
-        if (path.IsFailure)
-        {
-            return path.Error;
-        }
-
-        return new Department(Guid.NewGuid(), name.Value, identifier, parentId, path.Value, depth);
+        return new Department(Guid.NewGuid(), name, identifier, parentId, path, depth);
     }
 }

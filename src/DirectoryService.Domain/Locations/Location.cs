@@ -8,17 +8,17 @@ public class Location
 {
     public Guid Id { get; }
 
-    public LocationName Name { get; }
+    public LocationName Name { get; private set; }
 
-    public Address Address { get; }
+    public Address Address { get; private set; }
 
-    public Timezone Timezone { get; }
+    public Timezone Timezone { get; private set; }
 
-    public bool IsActive { get; }
+    public bool IsActive { get; private set; }
 
     public DateTime CreatedAt { get; }
 
-    public DateTime UpdatedAt { get; }
+    public DateTime UpdatedAt { get; private set; }
 
     private Location(Guid? id, LocationName name, Address address, Timezone timezone)
     {
@@ -32,36 +32,10 @@ public class Location
     }
 
     public static Result<Location, Error> Create(
-        string name,
-        string region,
-        string city,
-        string street,
-        string house,
-        string? apartment,
-        string? postalCode,
-        string timezone)
+        LocationName name,
+        Address address,
+        Timezone timezone)
     {
-        var locationName = LocationName.Create(Array.Empty<string>(), name);
-
-        if (locationName.IsFailure)
-        {
-            return locationName.Error;
-        }
-
-        var address = Address.Create(region, city, street, house, apartment, postalCode);
-
-        if (address.IsFailure)
-        {
-            return address.Error;
-        }
-
-        var locationTimezone = Timezone.Create(timezone);
-
-        if (locationTimezone.IsFailure)
-        {
-            return locationTimezone.Error;
-        }
-
-        return new Location(Guid.NewGuid(), locationName.Value, address.Value, locationTimezone.Value);
+        return new Location(Guid.NewGuid(), name, address, timezone);
     }
 }
