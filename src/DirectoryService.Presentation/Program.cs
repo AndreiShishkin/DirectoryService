@@ -1,4 +1,5 @@
-﻿using Microsoft.OpenApi;
+﻿using DirectoryService.Infrastructure;
+using Microsoft.OpenApi;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,10 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 builder.Services.AddOpenApi();
+
+bool isDevelopment = builder.Environment.IsDevelopment();
+
+builder.Services.AddInfrastructure(builder.Configuration, isDevelopment);
 
 WebApplication app = builder.Build();
 
