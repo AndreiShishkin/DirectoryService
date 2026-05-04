@@ -272,6 +272,7 @@ dotnet_diagnostic.SA1118.severity = none
 dotnet_diagnostic.eSA1128.severity = none
 dotnet_diagnostic.SA1401.severity = none
 dotnet_diagnostic.CA1716.severity = none
+dotnet_diagnostic.CA1707.severity = none
 
 # Отключаем или меняем уровень серьезности предупреждения SA1310, чтобы не конфликтовало с новыми правилами.
 dotnet_diagnostic.SA1310.severity = none
@@ -319,3 +320,6 @@ dotnet_naming_style.private_constants_style.word_separator = _
 dotnet_naming_rule.private_constants_rule.symbols = private_constants
 dotnet_naming_rule.private_constants_rule.style = private_constants_style
 dotnet_naming_rule.private_constants_rule.severity = suggestion
+
+[**/Migrations/*.cs]
+generated_code = true

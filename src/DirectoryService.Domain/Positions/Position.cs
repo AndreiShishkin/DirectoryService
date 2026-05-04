@@ -18,6 +18,12 @@ public class Position
 
     public DateTime UpdatedAt { get; private set; }
 
+#pragma warning disable CS8618
+    private Position()
+    {
+    }
+#pragma warning restore CS8618
+
     private Position(Guid? id, PositionName name, Description description)
     {
         Id = id ?? Guid.NewGuid();
