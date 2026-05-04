@@ -32,6 +32,12 @@ public class Department
 
     public DateTime UpdatedAt { get; private set; }
 
+    #pragma warning disable CS8618
+    private Department()
+    {
+    }
+    #pragma warning restore CS8618
+
     private Department(
         Guid? id,
         DepartmentName departmentName,

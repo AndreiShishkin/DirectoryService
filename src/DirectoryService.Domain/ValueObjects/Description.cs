@@ -5,7 +5,7 @@ namespace DirectoryService.Domain.ValueObjects;
 
 public record Description
 {
-    private const int MAX_QUANTITY = 1000;
+    public const int MAX_QUANTITY = 1000;
     public string Value { get; }
 
     private Description(string value)

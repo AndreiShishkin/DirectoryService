@@ -8,6 +8,12 @@ public record DepartmentLocation
 
     public Guid LocationId { get; private set; }
 
+#pragma warning disable CS8618
+    private DepartmentLocation()
+    {
+    }
+#pragma warning restore CS8618
+
     public DepartmentLocation(Guid? id, Department department, Guid locationId)
     {
         Id = id ?? Guid.NewGuid();
