@@ -20,6 +20,12 @@ public class Location
 
     public DateTime UpdatedAt { get; private set; }
 
+#pragma warning disable CS8618
+    private Location()
+    {
+    }
+#pragma warning disable CS8618
+
     private Location(Guid? id, LocationName name, Address address, Timezone timezone)
     {
         Id = id ?? Guid.NewGuid();

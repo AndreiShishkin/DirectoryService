@@ -6,7 +6,7 @@ namespace DirectoryService.Domain.ValueObjects;
 public record DepartmentName
 {
     private const int MIN_LENGTH = 3;
-    private const int MAX_LENGTH = 150;
+    public const int MAX_LENGTH = 150;
     public string Value { get; }
 
     private DepartmentName(string value)

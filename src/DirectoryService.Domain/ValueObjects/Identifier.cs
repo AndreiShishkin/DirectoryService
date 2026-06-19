@@ -9,7 +9,7 @@ public record Identifier
     private const string IDENTIFIER_REGEX = @"^[A-Za-z]*$";
 
     private const int MIN_LENGTH = 3;
-    private const int MAX_LENGTH = 150;
+    public const int MAX_LENGTH = 150;
 
     public string Value { get; }
 
