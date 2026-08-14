@@ -1,20 +1,9 @@
 ﻿using DirectoryService.Domain.Departments;
 using DirectoryService.Domain.ValueObjects;
 using DirectoryService.Infrastructure;
-using Microsoft.OpenApi;
-using Path = System.IO.Path;
+using Scalar.AspNetCore;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddSwaggerGen(options =>
-{
-    options.SwaggerDoc("v1", new OpenApiInfo
-        {
-            Version = "v1",
-            Title = "Directory Service API",
-            Contact = new OpenApiContact { Name = "Shishkin Andrey", },
-        });
-});
 
 builder.Services.AddOpenApi();
 
@@ -26,8 +15,8 @@ WebApplication app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.MapOpenApi();
+    app.MapScalarApiReference();
 }
 
 app.MapPost("/department", (DirectoryServiceDbContext dbContext) =>
