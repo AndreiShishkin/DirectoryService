@@ -12,7 +12,7 @@ public class LocationsController : ControllerBase
     public async Task<IActionResult> Create([FromBody] CreateLocationDto request)
     {
         await Task.CompletedTask.ConfigureAwait(false);
-        return Ok();
+        return Ok(Guid.NewGuid());
     }
 
     [HttpPut("{id:guid}")]
@@ -40,6 +40,6 @@ public class LocationsController : ControllerBase
     public async Task<IActionResult> Delete(Guid id)
     {
         await Task.CompletedTask.ConfigureAwait(false);
-        return Ok();
+        return NoContent();
     }
 }

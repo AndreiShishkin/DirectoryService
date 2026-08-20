@@ -11,7 +11,7 @@ public class DepartmentsController : ControllerBase
     public async Task<IActionResult> Create([FromBody] CreateDepartmentDto request)
     {
         await Task.CompletedTask.ConfigureAwait(false);
-        return Ok();
+        return Ok(Guid.NewGuid());
     }
 
     [HttpPut("{id:guid}")]
@@ -39,6 +39,6 @@ public class DepartmentsController : ControllerBase
     public async Task<IActionResult> Delete(Guid id)
     {
         await Task.CompletedTask.ConfigureAwait(false);
-        return Ok();
+        return NoContent();
     }
 }

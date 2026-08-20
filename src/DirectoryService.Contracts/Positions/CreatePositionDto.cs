@@ -1,6 +1,6 @@
 ﻿namespace DirectoryService.Contracts.Positions;
 
-public record CreatePosotionDto(
+public record CreatePositionDto(
     string Name,
     string Description
     );

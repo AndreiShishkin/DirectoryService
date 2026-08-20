@@ -8,10 +8,10 @@ namespace DirectoryService.Application;
 public class PositionsController : ControllerBase
 {
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] CreatePosotionDto request)
+    public async Task<IActionResult> Create([FromBody] CreatePositionDto request)
     {
         await Task.CompletedTask.ConfigureAwait(false);
-        return Ok();
+        return Ok(Guid.NewGuid());
     }
 
     [HttpPut("{id:guid}")]
@@ -39,6 +39,6 @@ public class PositionsController : ControllerBase
     public async Task<IActionResult> Delete(Guid id)
     {
         await Task.CompletedTask.ConfigureAwait(false);
-        return Ok();
+        return NoContent();
     }
 }
