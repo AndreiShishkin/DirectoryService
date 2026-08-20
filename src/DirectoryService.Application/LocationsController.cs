@@ -12,13 +12,34 @@ public class LocationsController : ControllerBase
     public async Task<IActionResult> Create([FromBody] CreateLocationDto request)
     {
         await Task.CompletedTask.ConfigureAwait(false);
-        return Ok("Location created");
+        return Ok();
     }
 
     [HttpPut("{id:guid}")]
     public async Task<IActionResult> Update(Guid id, [FromBody] UpdateLocationDto request)
     {
         await Task.CompletedTask.ConfigureAwait(false);
-        return Ok($"Location {id} updated");
+        return Ok();
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetAll()
+    {
+        await Task.CompletedTask.ConfigureAwait(false);
+        return Ok(Array.Empty<object>());
+    }
+
+    [HttpGet("{id:guid}")]
+    public async Task<IActionResult> Get(Guid id)
+    {
+        await Task.CompletedTask.ConfigureAwait(false);
+        return NotFound();
+    }
+
+    [HttpDelete("{id:guid}")]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+        await Task.CompletedTask.ConfigureAwait(false);
+        return Ok();
     }
 }
