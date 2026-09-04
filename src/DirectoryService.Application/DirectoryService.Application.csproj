@@ -4,7 +4,10 @@
     <ProjectReference Include="..\DirectoryService.Domain\DirectoryService.Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" />
-    <PackageReference Include="Newtonsoft.Json" />
+    <Folder Include="Departments\" />
+    <Folder Include="Positions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" />
   </ItemGroup>
 </Project>

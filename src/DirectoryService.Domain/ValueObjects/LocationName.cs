@@ -5,7 +5,7 @@ namespace DirectoryService.Domain.ValueObjects;
 
 public record LocationName
 {
-    private const int MIN_LENGTH = 3;
+    public const int MIN_LENGTH = 3;
     public const int MAX_LENGTH = 120;
     public string Value { get; }
 
