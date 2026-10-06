@@ -7,10 +7,12 @@ namespace DirectoryService.Application.Locations;
 
 public class LocationsService : ILocationsService
 {
+    private readonly ILocationsRepository _locationsRepository;
     private readonly IValidator<CreateLocationDto> _validator;
 
-    public LocationsService(IValidator<CreateLocationDto> validator)
+    public LocationsService(ILocationsRepository locationsRepository, IValidator<CreateLocationDto> validator)
     {
+        _locationsRepository = locationsRepository;
         _validator = validator;
     }
 
@@ -21,6 +23,19 @@ public class LocationsService : ILocationsService
         var validationResult = await _validator
             .ValidateAsync(locationDto, cancellationToken)
             .ConfigureAwait(false);
+
+        if (!validationResult.IsValid)
+        {
+            throw new ValidationException(validationResult.Errors);
+        }
+
+        var locations = await _locationsRepository.GetAllNamesAsync().ConfigureAwait(true);
+
+        if (locations
+            .Any(l => l == locationDto.Name))
+        {
+            throw new ArgumentException($"Локация с именем {locationDto.Name} уже существует");
+        }
 
         var locationName = LocationName.Create([], locationDto.Name).Value;
 
