@@ -50,6 +50,7 @@ public class LocationsService : ILocationsService
         var locationTimezone = Timezone.Create(locationDto.Timezone).Value;
 
         var location = Location.Create(locationName, locationAddress, locationTimezone);
-        return location.Value.Id;
+        var locationId = await _locationsRepository.AddAsync(location.Value).ConfigureAwait(true);
+        return locationId;
     }
 }

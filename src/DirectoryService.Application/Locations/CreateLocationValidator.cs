@@ -24,5 +24,11 @@ public class CreateLocationValidator : AbstractValidator<CreateLocationDto>
         RuleFor(l => l.House)
             .NotEmpty()
             .WithMessage("Номер дома должен быть заполнен");
+        RuleFor(l => l.Apartment)
+            .NotEmpty()
+            .WithMessage("Номер квартиры должен быть заполнен");
+        RuleFor(l => l.PostalCode)
+            .NotEmpty()
+            .WithMessage("Почтовый индекс должен быть заполнен");
     }
 }
