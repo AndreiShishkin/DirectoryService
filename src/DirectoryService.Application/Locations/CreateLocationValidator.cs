@@ -11,7 +11,7 @@ public class CreateLocationValidator : AbstractValidator<CreateLocationDto>
         RuleFor(l => l.Name)
             .NotEmpty()
             .Length(LocationName.MIN_LENGTH, LocationName.MAX_LENGTH)
-            .WithMessage("Имя должно быть заполнено, размер поля от 3 до 150 символов");
+            .WithMessage($"Имя должно быть заполнено, размер поля от 3 до {LocationName.MAX_LENGTH} символов");
         RuleFor(l => l.Region)
             .NotEmpty()
             .WithMessage("Регион должен быть заполнен");
@@ -20,7 +20,7 @@ public class CreateLocationValidator : AbstractValidator<CreateLocationDto>
             .WithMessage("Город должен быть заполнен");
         RuleFor(l => l.Street)
             .NotEmpty()
-            .WithMessage("Улица должена быть заполнена");
+            .WithMessage("Улица должна быть заполнена");
         RuleFor(l => l.House)
             .NotEmpty()
             .WithMessage("Номер дома должен быть заполнен");

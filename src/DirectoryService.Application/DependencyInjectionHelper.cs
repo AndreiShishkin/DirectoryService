@@ -10,7 +10,6 @@ public static class DependencyInjectionHelper
     {
         services.AddValidatorsFromAssembly(typeof(DependencyInjectionHelper).Assembly);
         services.AddScoped<ILocationsService, LocationsService>();
-        services.AddScoped<IValidator, CreateLocationValidator>();
 
         return services;
     }
