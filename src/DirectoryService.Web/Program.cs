@@ -1,11 +1,10 @@
 ﻿using DirectoryService.Infrastructure;
+using DirectoryService.Web;
 using Scalar.AspNetCore;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddOpenApi();
-
-builder.Services.AddControllers();
+builder.Services.AddProgram();
 
 bool isDevelopment = builder.Environment.IsDevelopment();
 
